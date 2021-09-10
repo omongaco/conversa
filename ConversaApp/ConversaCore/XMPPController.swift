@@ -1,47 +1,49 @@
 //
 //  XMPPController.swift
-//  CrazyMessages
+//  ConversaApp
 //
-//  Created by Andres on 7/21/16.
-//  Copyright © 2016 Andres. All rights reserved.
+//  Created by Ansyar on 8/22/21.
+//  Copyright © 2021 Ansyar. All rights reserved.
 //
 
 import Foundation
 import XMPPFramework
 
-enum XMPPControllerError: Error {
-	case wrongUserJID
-}
+
 
 class XMPPController: NSObject {
 	var xmppStream: XMPPStream
-	
-	let hostName: String
-	let userJID: XMPPJID
-	let hostPort: UInt16
-	let password: String
-	
-	init(hostName: String, userJIDString: String, hostPort: UInt16 = 5222, password: String) throws {
-        guard let userJID = XMPPJID(string: userJIDString) else {
-			throw XMPPControllerError.wrongUserJID
-		}
-		
-		self.hostName = hostName
-		self.userJID = userJID
-		self.hostPort = hostPort
-		self.password = password
-		
-		// Stream Configuration
-		self.xmppStream = XMPPStream()
-		self.xmppStream.hostName = hostName
-		self.xmppStream.hostPort = hostPort
-		self.xmppStream.startTLSPolicy = XMPPStreamStartTLSPolicy.allowed
-		self.xmppStream.myJID = userJID
-		
-		super.init()
-		
-		self.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
-	}
+    
+    init(userId: String, password: String) throws {
+        UserDefaults.standard.setValue(userId, forKey: keyUserID)
+        UserDefaults.standard.setValue(password, forKey: keyUserPass)
+        self.xmppStream = XMPPStream()
+        super.init()
+        do {
+            try setupXmppStream()
+        } catch {
+            
+        }
+        
+    }
+    
+    func setupXmppStream() throws {
+        guard let userId = UserDefaults.standard.string(forKey: keyUserID) else {
+            throw XMPPControllerError.missingUserID
+        }
+        
+        guard let userJID = XMPPJID(string: userId) else {
+            throw XMPPControllerError.wrongUserJID
+        }
+        
+        // Stream Configuration
+        self.xmppStream.hostName = hostName
+        self.xmppStream.hostPort = hostPort
+        self.xmppStream.startTLSPolicy = XMPPStreamStartTLSPolicy.allowed
+        self.xmppStream.myJID = userJID
+        
+        self.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
+    }
 	
 	func connect() {
 		if !self.xmppStream.isDisconnected() {
@@ -56,7 +58,18 @@ extension XMPPController: XMPPStreamDelegate {
 	
 	func xmppStreamDidConnect(_ stream: XMPPStream!) {
 		print("Stream: Connected")
-		try! stream.authenticate(withPassword: self.password)
+        
+        guard let userPass = UserDefaults.standard.string(forKey: keyUserPass) else {
+            print("Stream: UserPassword Required")
+            return
+        }
+        
+        do {
+            try stream.authenticate(withPassword: userPass)
+        } catch {
+            print("Stream Error: \(error)")
+        }
+		
 	}
 	
 	func xmppStreamDidAuthenticate(_ sender: XMPPStream!) {

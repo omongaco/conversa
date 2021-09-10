@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  CrazyMessages
+//  ConversaApp
 //
-//  Created by Andres on 12/26/16.
-//  Copyright © 2016 Erlang Solutions. All rights reserved.
+//  Created by Ansyar on 8/21/21.
+//  Copyright © 2021 Ansyar. All rights reserved.
 //
 
 import UIKit

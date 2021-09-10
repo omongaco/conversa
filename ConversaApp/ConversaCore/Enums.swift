@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+enum XMPPControllerError: Error {
+    case wrongUserJID
+    case missingUserID
+    case missingUserPass
+    case missingUserToken
+}

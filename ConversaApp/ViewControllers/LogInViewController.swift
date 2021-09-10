@@ -1,9 +1,9 @@
 //
 //  LoginViewController.swift
-//  CrazyMessages
+//  ConversaApp
 //
-//  Created by Andres on 7/21/16.
-//  Copyright © 2016 Andres. All rights reserved.
+//  Created by Ansyar on 8/22/21.
+//  Copyright © 2021 Ansyar. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,6 @@ class LogInViewController: UIViewController {
 
 	@IBOutlet weak var userJIDLabel: UITextField!
 	@IBOutlet weak var userPasswordLabel: UITextField!
-	@IBOutlet weak var serverLabel: UITextField!
 	@IBOutlet weak var errorLabel: UILabel!
 
 	weak var delegate:LogInViewControllerDelegate?
@@ -26,8 +25,7 @@ class LogInViewController: UIViewController {
 
 	@IBAction func logInAction(sender: AnyObject) {
 		if self.userJIDLabel.text?.count == 0
-		  || self.userPasswordLabel.text?.count == 0
-		  || self.serverLabel.text?.count == 0 {
+		  || self.userPasswordLabel.text?.count == 0 {
 				
 			self.errorLabel.text = "Something is missing or wrong!"
 			return
@@ -41,7 +39,7 @@ class LogInViewController: UIViewController {
         self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
 		self.hud.label.text = "Signing in..."
 		
-        self.delegate?.didTouchLogIn(sender: self, userJID: self.userJIDLabel.text!, userPassword: self.userPasswordLabel.text!, server: self.serverLabel.text!)
+        self.delegate?.didTouchLogIn(sender: self, userJID: self.userJIDLabel.text!, userPassword: self.userPasswordLabel.text!)
 	}
 	
 	func showErrorMessage(message: String) {
@@ -53,5 +51,5 @@ class LogInViewController: UIViewController {
 }
 
 protocol LogInViewControllerDelegate: class {
-	func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String, server: String)
+	func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String)
 }

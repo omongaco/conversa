@@ -1,9 +1,9 @@
 //
 //  ViewController.swift
-//  CrazyMessages
+//  ConversaApp
 //
-//  Created by Andres on 7/21/16.
-//  Copyright © 2016 Andres. All rights reserved.
+//  Created by Ansyar on 8/22/21.
+//  Copyright © 2021 Ansyar. All rights reserved.
 //
 
 import UIKit
@@ -38,13 +38,11 @@ class ViewController: UIViewController {
 
 extension ViewController: LogInViewControllerDelegate {
 
-    func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String, server: String) {
+    func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String) {
         self.logInViewController = sender
 
         do {
-            try self.xmppController = XMPPController(hostName: server,
-                                                     userJIDString: userJID,
-                                                     password: userPassword)
+            self.xmppController = try XMPPController(userId: userJID,password: userPassword)
             self.xmppController.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
             self.xmppController.connect()
         } catch {

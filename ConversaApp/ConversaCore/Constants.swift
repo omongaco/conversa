@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+let hostName: String = "xmpp.jp"
+let hostPort: UInt16 = UInt16(5222)
+
+let keyUserID: String = "userid_key"
+let keyUserPass: String = "userpass_key"
+let keyUserToken: String = "usertoken_key"
