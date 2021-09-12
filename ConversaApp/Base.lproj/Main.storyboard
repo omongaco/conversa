@@ -34,6 +34,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chatView" destination="jRb-8H-fyp" id="zTZ-vo-snZ"/>
                         <segue destination="luI-ZP-lFb" kind="presentation" identifier="LogInViewController" id="vTo-ik-98k"/>
                     </connections>
                 </viewController>

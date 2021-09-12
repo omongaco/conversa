@@ -11,9 +11,11 @@ import XMPPFramework
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var chatView: ChatView!
+    
     weak var logInViewController: LogInViewController?
     var logInPresented = false
-    var xmppController: XMPPController!
+    var xmppManager: XMPPManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,29 +39,30 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: LogInViewControllerDelegate {
-
     func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String) {
         self.logInViewController = sender
-
-        do {
-            self.xmppController = try XMPPController(userId: userJID,password: userPassword)
-            self.xmppController.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
-            self.xmppController.connect()
-        } catch {
-            sender.showErrorMessage(message: "Something went wrong")
-        }
+        
+        xmppManager = XMPPManager.sharedInstance
+        xmppManager.setupUser(userId: userJID,password: userPassword)
+        xmppManager.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
+        xmppManager.connect()
+        xmppManager.messageDelegate = self
     }
 }
 
 extension ViewController: XMPPStreamDelegate {
-
-    func xmppStreamDidAuthenticate(_ sender: XMPPStream!) {
+    func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
         self.logInViewController?.dismiss(animated: true, completion: nil)
     }
     
-    func xmppStream(_ sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
+    func xmppStream(_ sender: XMPPStream, didNotAuthenticate error: DDXMLElement) {
         self.logInViewController?.showErrorMessage(message: "Wrong password or username")
     }
-    
 }
 
+extension ViewController: MessageDelegate {
+    func messageReceived(message: ConversaMessage) {
+        chatView.messages.append(message)
+        chatView.loadMessages()
+    }
+}

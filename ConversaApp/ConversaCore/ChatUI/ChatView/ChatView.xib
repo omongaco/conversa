@@ -14,7 +14,8 @@
                 <outlet property="chatBar" destination="L6F-gj-kip" id="YRH-le-hqT"/>
                 <outlet property="chatHeader" destination="dxr-tt-lGt" id="bDF-78-C1Q"/>
                 <outlet property="chatTable" destination="iZK-VZ-q6f" id="ev6-KJ-Pxy"/>
-                <outlet property="spacer" destination="yOG-1G-Fgp" id="aB3-8p-Xwt"/>
+                <outlet property="chatTableContainer" destination="g5N-BW-ABb" id="nWV-ld-AGw"/>
+                <outlet property="stackView" destination="YD5-ew-bHQ" id="Ije-oG-y5C"/>
                 <outlet property="view" destination="fNm-mF-bmd" id="IyU-TP-KmD"/>
             </connections>
         </placeholder>
@@ -33,22 +34,27 @@
                                 <constraint firstAttribute="height" constant="65" id="Cv7-YF-13C"/>
                             </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iZK-VZ-q6f">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5N-BW-ABb">
                             <rect key="frame" x="0.0" y="65" width="414" height="747"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </tableView>
+                            <subviews>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iZK-VZ-q6f">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="747"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </tableView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="iZK-VZ-q6f" secondAttribute="bottom" id="48Y-TO-mSX"/>
+                                <constraint firstItem="iZK-VZ-q6f" firstAttribute="top" secondItem="g5N-BW-ABb" secondAttribute="top" id="S7u-p9-PoY"/>
+                                <constraint firstAttribute="trailing" secondItem="iZK-VZ-q6f" secondAttribute="trailing" id="VH3-6N-WuL"/>
+                                <constraint firstItem="iZK-VZ-q6f" firstAttribute="leading" secondItem="g5N-BW-ABb" secondAttribute="leading" id="qJY-3Y-Ebr"/>
+                            </constraints>
+                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L6F-gj-kip" customClass="ChatBar" customModule="ConversaApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="812" width="414" height="50"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="cIe-4e-yec"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yOG-1G-Fgp">
-                            <rect key="frame" x="0.0" y="862" width="414" height="0.0"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" id="UmA-7f-5tJ"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -66,13 +72,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-143" y="60"/>
-        </view>
-        <view contentMode="scaleToFill" id="Z80-sZ-Rwf">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <viewLayoutGuide key="safeArea" id="Mo6-Wo-KWK"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="825" y="95"/>
         </view>
     </objects>
     <resources>

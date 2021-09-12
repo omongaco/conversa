@@ -14,6 +14,12 @@ class ChatBar: UIView {
     @IBOutlet weak var chatBarImage: UIButton!
     @IBOutlet weak var chatBarField: UITextField!
     @IBOutlet weak var chatBarMic: UIButton!
+    @IBOutlet weak var recordTime: UILabel!
+    @IBOutlet weak var buttonContainer: UIStackView!
+    @IBOutlet weak var cancelRecord: UIButton!
+    @IBOutlet weak var sendRecord: UIButton!
+    
+    var isVoice = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,14 +31,14 @@ class ChatBar: UIView {
         initSubViews()
     }
     
-    
-    
     private func initSubViews() {
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
         nib.instantiate(withOwner: self, options: nil)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         addConstraints()
+        cancelRecord.layer.cornerRadius = 5
+        sendRecord.layer.cornerRadius = 5
     }
     
     private func addConstraints() {
@@ -42,5 +48,19 @@ class ChatBar: UIView {
             bottomAnchor.constraint(equalTo: view.bottomAnchor),
             trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    @IBAction func cancelButtonClicked() {
+        isVoice = false
+        toggleVoice()
+    }
+    
+    func toggleVoice() {
+        chatBarBuble.isHidden = isVoice
+        chatBarImage.isHidden = isVoice
+        chatBarField.isHidden = isVoice
+        recordTime.isHidden = !isVoice
+        buttonContainer.isHidden = !isVoice
+        chatBarMic.tintColor = isVoice ? .red : .darkGray
     }
 }

@@ -16,13 +16,18 @@
 		0E31E3C626EB2BF2006A60B5 /* ChatBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E31E3C526EB2BF2006A60B5 /* ChatBar.swift */; };
 		0E31E3C926EB36B6006A60B5 /* ChatView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E31E3C826EB36B6006A60B5 /* ChatView.xib */; };
 		0E31E3CB26EB36C1006A60B5 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E31E3CA26EB36C1006A60B5 /* ChatView.swift */; };
+		0E3730C226ED62EF00E10997 /* RoomMesssage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730C126ED62EF00E10997 /* RoomMesssage.swift */; };
+		0E3730C726ED9E9300E10997 /* ChatMyTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3730C626ED9E9300E10997 /* ChatMyTextCell.xib */; };
+		0E3730C926ED9E9E00E10997 /* ChatMyTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */; };
+		0E3730CB26EDC58900E10997 /* ChatOtherTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */; };
+		0E3730CD26EDC59700E10997 /* ChatOtherTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */; };
 		DC038B2C5DC18C1A0625A2FA /* Pods_ConversaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */; };
 		E01701371E11471F005808B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701361E11471F005808B1 /* AppDelegate.swift */; };
 		E01701391E11471F005808B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701381E11471F005808B1 /* ViewController.swift */; };
 		E017013C1E11471F005808B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E017013A1E11471F005808B1 /* Main.storyboard */; };
 		E017013E1E11471F005808B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E017013D1E11471F005808B1 /* Assets.xcassets */; };
 		E01701411E11471F005808B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E017013F1E11471F005808B1 /* LaunchScreen.storyboard */; };
-		E06D63511E11CAFC0092A99C /* XMPPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D63501E11CAFC0092A99C /* XMPPController.swift */; };
+		E06D63511E11CAFC0092A99C /* XMPPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D63501E11CAFC0092A99C /* XMPPManager.swift */; };
 		E06D63541E11CCC60092A99C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D63531E11CCC60092A99C /* LogInViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +41,11 @@
 		0E31E3C526EB2BF2006A60B5 /* ChatBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBar.swift; sourceTree = "<group>"; };
 		0E31E3C826EB36B6006A60B5 /* ChatView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatView.xib; sourceTree = "<group>"; };
 		0E31E3CA26EB36C1006A60B5 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		0E3730C126ED62EF00E10997 /* RoomMesssage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMesssage.swift; sourceTree = "<group>"; };
+		0E3730C626ED9E9300E10997 /* ChatMyTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatMyTextCell.xib; sourceTree = "<group>"; };
+		0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMyTextCell.swift; sourceTree = "<group>"; };
+		0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOtherTextCell.swift; sourceTree = "<group>"; };
+		0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatOtherTextCell.xib; sourceTree = "<group>"; };
 		1FDE646AB59957E11C5065B4 /* Pods-CrazyMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.release.xcconfig"; sourceTree = "<group>"; };
 		553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConversaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0CAC0ED50BCF4B74CB647F /* Pods-CrazyMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.debug.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +58,7 @@
 		E017013D1E11471F005808B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E01701401E11471F005808B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E01701421E114720005808B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E06D63501E11CAFC0092A99C /* XMPPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMPPController.swift; sourceTree = "<group>"; };
+		E06D63501E11CAFC0092A99C /* XMPPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMPPManager.swift; sourceTree = "<group>"; };
 		E06D63531E11CCC60092A99C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,8 +77,9 @@
 		0E31E3B526EB06F5006A60B5 /* ConversaCore */ = {
 			isa = PBXGroup;
 			children = (
+				0E3730C026ED62BD00E10997 /* Models */,
 				0E31E3BA26EB1289006A60B5 /* ChatUI */,
-				E06D63501E11CAFC0092A99C /* XMPPController.swift */,
+				E06D63501E11CAFC0092A99C /* XMPPManager.swift */,
 				0E31E3B626EB0B16006A60B5 /* Constants.swift */,
 				0E31E3B826EB0B7F006A60B5 /* Enums.swift */,
 			);
@@ -107,10 +118,30 @@
 		0E31E3C726EB369A006A60B5 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				0E3730C526ED9E8500E10997 /* ChatCell */,
 				0E31E3C826EB36B6006A60B5 /* ChatView.xib */,
 				0E31E3CA26EB36C1006A60B5 /* ChatView.swift */,
 			);
 			path = ChatView;
+			sourceTree = "<group>";
+		};
+		0E3730C026ED62BD00E10997 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0E3730C126ED62EF00E10997 /* RoomMesssage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0E3730C526ED9E8500E10997 /* ChatCell */ = {
+			isa = PBXGroup;
+			children = (
+				0E3730C626ED9E9300E10997 /* ChatMyTextCell.xib */,
+				0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */,
+				0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */,
+				0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */,
+			);
+			path = ChatCell;
 			sourceTree = "<group>";
 		};
 		37E7B8B68FAD22E8527207B7 /* Frameworks */ = {
@@ -237,9 +268,11 @@
 			files = (
 				0E31E3C926EB36B6006A60B5 /* ChatView.xib in Resources */,
 				0E31E3BE26EB1360006A60B5 /* Media.xcassets in Resources */,
+				0E3730CD26EDC59700E10997 /* ChatOtherTextCell.xib in Resources */,
 				0E31E3BC26EB12A9006A60B5 /* ChatHeader.xib in Resources */,
 				E01701411E11471F005808B1 /* LaunchScreen.storyboard in Resources */,
 				0E31E3C426EB2BB2006A60B5 /* ChatBar.xib in Resources */,
+				0E3730C726ED9E9300E10997 /* ChatMyTextCell.xib in Resources */,
 				E017013E1E11471F005808B1 /* Assets.xcassets in Resources */,
 				E017013C1E11471F005808B1 /* Main.storyboard in Resources */,
 			);
@@ -278,6 +311,7 @@
 				"${BUILT_PRODUCTS_DIR}/KissXML/KissXML.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/XMPPFramework/XMPPFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/libidn/libidn.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -286,6 +320,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KissXML.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMPPFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libidn.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -300,14 +335,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E31E3B726EB0B16006A60B5 /* Constants.swift in Sources */,
+				0E3730CB26EDC58900E10997 /* ChatOtherTextCell.swift in Sources */,
 				0E31E3C026EB170F006A60B5 /* ChatHeader.swift in Sources */,
+				0E3730C926ED9E9E00E10997 /* ChatMyTextCell.swift in Sources */,
 				E06D63541E11CCC60092A99C /* LogInViewController.swift in Sources */,
 				E01701391E11471F005808B1 /* ViewController.swift in Sources */,
 				0E31E3CB26EB36C1006A60B5 /* ChatView.swift in Sources */,
 				E01701371E11471F005808B1 /* AppDelegate.swift in Sources */,
+				0E3730C226ED62EF00E10997 /* RoomMesssage.swift in Sources */,
 				0E31E3C626EB2BF2006A60B5 /* ChatBar.swift in Sources */,
 				0E31E3B926EB0B7F006A60B5 /* Enums.swift in Sources */,
-				E06D63511E11CAFC0092A99C /* XMPPController.swift in Sources */,
+				E06D63511E11CAFC0092A99C /* XMPPManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

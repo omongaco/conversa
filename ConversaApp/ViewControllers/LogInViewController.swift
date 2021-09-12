@@ -50,6 +50,6 @@ class LogInViewController: UIViewController {
 
 }
 
-protocol LogInViewControllerDelegate: class {
+protocol LogInViewControllerDelegate: AnyObject {
 	func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String)
 }

@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        DDLog.add(DDTTYLogger.sharedInstance(), with: DDLogLevel.all)
+        DDLog.add(DDTTYLogger.sharedInstance as! DDLogger, with: DDLogLevel.all)
 
         return true
     }

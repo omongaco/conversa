@@ -8,6 +8,8 @@
 
 import Foundation
 
+let domain: String = "xmpp.jp"
+let mucSubdomain: String = "conference"
 let hostName: String = "xmpp.jp"
 let hostPort: UInt16 = UInt16(5222)
 
