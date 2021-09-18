@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ChatView: UIView {
     @IBOutlet weak var view: UIView!
@@ -17,7 +18,9 @@ class ChatView: UIView {
     @IBOutlet weak var chatBar: ChatBar!
     
     var spacer: UIView?
+    var chatTemplate: ChatTemplate?
     var messages: [ConversaMessage] = []
+    var isChatTemplate = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -121,12 +124,32 @@ class ChatView: UIView {
 
 extension ChatView {
     @objc func bubbleChatClicked() {
-        
+        if isChatTemplate {
+            if chatTemplate != nil {
+                stackView.removeArrangedSubview(chatTemplate!)
+                chatTemplate = nil
+                isChatTemplate = false
+            }
+        } else {
+            if chatTemplate == nil {
+                chatTemplate = ChatTemplate()
+                chatTemplate!.delegate = self
+                stackView.addArrangedSubview(chatTemplate!)
+                var safeBottom = CGFloat(0)
+                if #available(iOS 13.0, *) {
+                    if let window = UIApplication.shared.keyWindow {
+                        safeBottom = window.safeAreaInsets.bottom
+                    }
+                }
+                chatTemplate!.heightAnchor.constraint(equalToConstant: 313 - safeBottom).isActive = true
+                isChatTemplate = true
+            }
+        }
     }
     
     @objc func imageChatClicked() {
         let alertController = UIAlertController(title: "Image", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Tak a Photo", style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: "Take a Photo", style: .default, handler: { action in
             //
         }))
         
@@ -211,5 +234,11 @@ extension ChatView: UITextFieldDelegate {
         if let xmppRoom = XMPPManager.sharedInstance.xmppRoom {
             xmppRoom.sendMessage(withBody: message)
         }
+    }
+}
+
+extension ChatView: ChatTemplateProtocol {
+    func messageDidSelected(message: String) {
+        chatBar.chatBarField.text = message
     }
 }

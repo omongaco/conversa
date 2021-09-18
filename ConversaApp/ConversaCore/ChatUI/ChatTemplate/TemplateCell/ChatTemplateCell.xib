@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatTemplateCell" id="BWe-v5-GAJ" customClass="ChatTemplateCell" customModule="ConversaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BWe-v5-GAJ" id="xxk-UK-rlw">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-BL-1GM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="39"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x16-vj-oQo">
+                                <rect key="frame" x="10" y="0.0" width="394" height="39"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Template Message" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFY-xs-K8R">
+                                        <rect key="frame" x="0.0" y="10.5" width="379" height="18.5"/>
+                                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8a-zq-kL8">
+                                        <rect key="frame" x="379" y="12" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="g5D-rm-vzb"/>
+                                            <constraint firstAttribute="height" constant="15" id="npv-0U-84b"/>
+                                        </constraints>
+                                        <state key="normal" image="chatTemplateDots"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81960784313725488" green="0.81960784313725488" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x16-vj-oQo" secondAttribute="trailing" constant="10" id="7Ky-Wj-ayC"/>
+                            <constraint firstAttribute="bottom" secondItem="x16-vj-oQo" secondAttribute="bottom" id="ELs-u8-PMW"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="mzA-2i-OWk"/>
+                            <constraint firstItem="x16-vj-oQo" firstAttribute="leading" secondItem="Kbb-BL-1GM" secondAttribute="leading" constant="10" id="sGY-YK-cRp"/>
+                            <constraint firstItem="x16-vj-oQo" firstAttribute="top" secondItem="Kbb-BL-1GM" secondAttribute="top" id="tpI-d4-BxC"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Kbb-BL-1GM" firstAttribute="top" secondItem="xxk-UK-rlw" secondAttribute="top" id="Vrn-99-RNU"/>
+                    <constraint firstAttribute="bottom" secondItem="Kbb-BL-1GM" secondAttribute="bottom" constant="5" id="jdr-yw-2E5"/>
+                    <constraint firstAttribute="trailing" secondItem="Kbb-BL-1GM" secondAttribute="trailing" id="tGA-OR-i31"/>
+                    <constraint firstItem="Kbb-BL-1GM" firstAttribute="leading" secondItem="xxk-UK-rlw" secondAttribute="leading" id="vrA-dr-LGw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="cellButton" destination="c8a-zq-kL8" id="mEh-bg-rrD"/>
+                <outlet property="customView" destination="Kbb-BL-1GM" id="YJJ-5V-1Uv"/>
+                <outlet property="messageLabel" destination="XFY-xs-K8R" id="lnP-cG-fZw"/>
+            </connections>
+            <point key="canvasLocation" x="103" y="148"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chatTemplateDots" width="3" height="11"/>
+    </resources>
+</document>

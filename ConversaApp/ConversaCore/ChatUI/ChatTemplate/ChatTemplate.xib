@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatTemplate" customModule="ConversaApp" customModuleProvider="target">
+            <connections>
+                <outlet property="addButton" destination="Iav-6p-6k1" id="DPX-TE-hGX"/>
+                <outlet property="addLabel" destination="TfF-6J-yGe" id="lP6-kh-4gN"/>
+                <outlet property="templateTable" destination="7J3-94-Xho" id="Jru-0G-YyX"/>
+                <outlet property="view" destination="YDM-U3-bWB" id="1uQ-Yc-c3O"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YDM-U3-bWB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="313"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xjy-mi-U30">
+                    <rect key="frame" x="20" y="5" width="374" height="288"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7J3-94-Xho">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="244"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Mkj-wq-qa1">
+                            <rect key="frame" x="0.0" y="244" width="374" height="44"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iav-6p-6k1">
+                                    <rect key="frame" x="0.0" y="14.5" width="15" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="CUC-xn-Su5"/>
+                                        <constraint firstAttribute="width" constant="15" id="kIc-yp-4XG"/>
+                                    </constraints>
+                                    <state key="normal" image="chatTemplatePlus"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add new message template" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfF-6J-yGe">
+                                    <rect key="frame" x="20" y="13" width="354" height="18.5"/>
+                                    <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                                    <color key="textColor" red="0.0039215686269999999" green="0.59607843140000005" blue="0.84313725490000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="5zl-HK-Fsk"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="JuF-0H-voc"/>
+            <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="xjy-mi-U30" firstAttribute="top" secondItem="YDM-U3-bWB" secondAttribute="top" constant="5" id="7GV-5d-s37"/>
+                <constraint firstItem="xjy-mi-U30" firstAttribute="leading" secondItem="JuF-0H-voc" secondAttribute="leading" constant="20" id="9uD-n0-waQ"/>
+                <constraint firstItem="JuF-0H-voc" firstAttribute="bottom" secondItem="xjy-mi-U30" secondAttribute="bottom" constant="20" id="H0j-79-dis"/>
+                <constraint firstItem="JuF-0H-voc" firstAttribute="trailing" secondItem="xjy-mi-U30" secondAttribute="trailing" constant="20" id="Zus-k5-bZN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-46" y="117"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chatTemplatePlus" width="16" height="16"/>
+    </resources>
+</document>

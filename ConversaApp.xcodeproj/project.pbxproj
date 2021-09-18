@@ -21,6 +21,12 @@
 		0E3730C926ED9E9E00E10997 /* ChatMyTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */; };
 		0E3730CB26EDC58900E10997 /* ChatOtherTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */; };
 		0E3730CD26EDC59700E10997 /* ChatOtherTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */; };
+		0E86FDF026F5A7FE0029D746 /* ChatTemplate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E86FDEF26F5A7FE0029D746 /* ChatTemplate.xib */; };
+		0E86FDF226F5AAAD0029D746 /* ChatTemplateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E86FDF126F5AAAD0029D746 /* ChatTemplateCell.xib */; };
+		0E86FDF526F5AD2F0029D746 /* ChatTemplateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDF426F5AD2F0029D746 /* ChatTemplateCell.swift */; };
+		0E86FDF726F5AF4D0029D746 /* TemplateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDF626F5AF4D0029D746 /* TemplateMessage.swift */; };
+		0E86FDF926F5B10C0029D746 /* ChatTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */; };
+		0E86FDFC26F5B6AF0029D746 /* ChatTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E86FDFB26F5B6AF0029D746 /* ChatTemplate.plist */; };
 		0ED9F71A26F20D26009EC943 /* ConversaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9F71926F20D26009EC943 /* ConversaAPI.swift */; };
 		DC038B2C5DC18C1A0625A2FA /* Pods_ConversaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */; };
 		E01701371E11471F005808B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701361E11471F005808B1 /* AppDelegate.swift */; };
@@ -47,6 +53,12 @@
 		0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMyTextCell.swift; sourceTree = "<group>"; };
 		0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOtherTextCell.swift; sourceTree = "<group>"; };
 		0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatOtherTextCell.xib; sourceTree = "<group>"; };
+		0E86FDEF26F5A7FE0029D746 /* ChatTemplate.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTemplate.xib; sourceTree = "<group>"; };
+		0E86FDF126F5AAAD0029D746 /* ChatTemplateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTemplateCell.xib; sourceTree = "<group>"; };
+		0E86FDF426F5AD2F0029D746 /* ChatTemplateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTemplateCell.swift; sourceTree = "<group>"; };
+		0E86FDF626F5AF4D0029D746 /* TemplateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateMessage.swift; sourceTree = "<group>"; };
+		0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTemplate.swift; sourceTree = "<group>"; };
+		0E86FDFB26F5B6AF0029D746 /* ChatTemplate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ChatTemplate.plist; sourceTree = "<group>"; };
 		0ED9F71926F20D26009EC943 /* ConversaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversaAPI.swift; sourceTree = "<group>"; };
 		1FDE646AB59957E11C5065B4 /* Pods-CrazyMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.release.xcconfig"; sourceTree = "<group>"; };
 		553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConversaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +91,7 @@
 		0E31E3B526EB06F5006A60B5 /* ConversaCore */ = {
 			isa = PBXGroup;
 			children = (
+				0E86FDFA26F5B68E0029D746 /* Resources */,
 				0ED9F71826F20C99009EC943 /* Network */,
 				0E3730C026ED62BD00E10997 /* Models */,
 				0E31E3BA26EB1289006A60B5 /* ChatUI */,
@@ -92,10 +105,10 @@
 		0E31E3BA26EB1289006A60B5 /* ChatUI */ = {
 			isa = PBXGroup;
 			children = (
+				0E86FDEE26F5A7AF0029D746 /* ChatTemplate */,
 				0E31E3C726EB369A006A60B5 /* ChatView */,
 				0E31E3C226EB2B9E006A60B5 /* ChatBar */,
 				0E31E3C126EB2B47006A60B5 /* ChatHeader */,
-				0E31E3BD26EB1360006A60B5 /* Media.xcassets */,
 			);
 			path = ChatUI;
 			sourceTree = "<group>";
@@ -132,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				0E3730C126ED62EF00E10997 /* RoomMesssage.swift */,
+				0E86FDF626F5AF4D0029D746 /* TemplateMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +159,34 @@
 				0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */,
 			);
 			path = ChatCell;
+			sourceTree = "<group>";
+		};
+		0E86FDEE26F5A7AF0029D746 /* ChatTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				0E86FDF326F5ACFF0029D746 /* TemplateCell */,
+				0E86FDEF26F5A7FE0029D746 /* ChatTemplate.xib */,
+				0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */,
+			);
+			path = ChatTemplate;
+			sourceTree = "<group>";
+		};
+		0E86FDF326F5ACFF0029D746 /* TemplateCell */ = {
+			isa = PBXGroup;
+			children = (
+				0E86FDF126F5AAAD0029D746 /* ChatTemplateCell.xib */,
+				0E86FDF426F5AD2F0029D746 /* ChatTemplateCell.swift */,
+			);
+			path = TemplateCell;
+			sourceTree = "<group>";
+		};
+		0E86FDFA26F5B68E0029D746 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E31E3BD26EB1360006A60B5 /* Media.xcassets */,
+				0E86FDFB26F5B6AF0029D746 /* ChatTemplate.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		0ED9F71826F20C99009EC943 /* Network */ = {
@@ -281,8 +323,11 @@
 				0E31E3BE26EB1360006A60B5 /* Media.xcassets in Resources */,
 				0E3730CD26EDC59700E10997 /* ChatOtherTextCell.xib in Resources */,
 				0E31E3BC26EB12A9006A60B5 /* ChatHeader.xib in Resources */,
+				0E86FDF226F5AAAD0029D746 /* ChatTemplateCell.xib in Resources */,
 				E01701411E11471F005808B1 /* LaunchScreen.storyboard in Resources */,
+				0E86FDF026F5A7FE0029D746 /* ChatTemplate.xib in Resources */,
 				0E31E3C426EB2BB2006A60B5 /* ChatBar.xib in Resources */,
+				0E86FDFC26F5B6AF0029D746 /* ChatTemplate.plist in Resources */,
 				0E3730C726ED9E9300E10997 /* ChatMyTextCell.xib in Resources */,
 				E017013E1E11471F005808B1 /* Assets.xcassets in Resources */,
 				E017013C1E11471F005808B1 /* Main.storyboard in Resources */,
@@ -349,11 +394,14 @@
 				0E3730CB26EDC58900E10997 /* ChatOtherTextCell.swift in Sources */,
 				0E31E3C026EB170F006A60B5 /* ChatHeader.swift in Sources */,
 				0E3730C926ED9E9E00E10997 /* ChatMyTextCell.swift in Sources */,
+				0E86FDF726F5AF4D0029D746 /* TemplateMessage.swift in Sources */,
 				E06D63541E11CCC60092A99C /* LogInViewController.swift in Sources */,
 				E01701391E11471F005808B1 /* ViewController.swift in Sources */,
 				0E31E3CB26EB36C1006A60B5 /* ChatView.swift in Sources */,
 				E01701371E11471F005808B1 /* AppDelegate.swift in Sources */,
+				0E86FDF926F5B10C0029D746 /* ChatTemplate.swift in Sources */,
 				0E3730C226ED62EF00E10997 /* RoomMesssage.swift in Sources */,
+				0E86FDF526F5AD2F0029D746 /* ChatTemplateCell.swift in Sources */,
 				0E31E3C626EB2BF2006A60B5 /* ChatBar.swift in Sources */,
 				0E31E3B926EB0B7F006A60B5 /* Enums.swift in Sources */,
 				E06D63511E11CAFC0092A99C /* XMPPManager.swift in Sources */,
