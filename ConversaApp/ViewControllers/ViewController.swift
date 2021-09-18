@@ -39,14 +39,24 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: LogInViewControllerDelegate {
-    func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String) {
+    func didTouchLogIn(sender: LogInViewController, userJID: String) {
         self.logInViewController = sender
         
-        xmppManager = XMPPManager.sharedInstance
-        xmppManager.setupUser(userId: userJID,password: userPassword)
-        xmppManager.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
-        xmppManager.connect()
-        xmppManager.messageDelegate = self
+        let conversaAPI = ConversaAPI.shared
+        conversaAPI.getToken(userId: userJID) { token, error in
+            guard let token = token, error == nil else {
+                DispatchQueue.main.async {
+                    self.logInViewController?.showErrorMessage(message: "Connect Failed!")
+                }
+                return
+            }
+            
+            self.xmppManager = XMPPManager.sharedInstance
+            self.xmppManager.setupUser(userId: userJID,password: token)
+            self.xmppManager.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
+            self.xmppManager.connect()
+            self.xmppManager.messageDelegate = self
+        }
     }
 }
 

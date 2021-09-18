@@ -21,6 +21,7 @@
 		0E3730C926ED9E9E00E10997 /* ChatMyTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */; };
 		0E3730CB26EDC58900E10997 /* ChatOtherTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */; };
 		0E3730CD26EDC59700E10997 /* ChatOtherTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */; };
+		0ED9F71A26F20D26009EC943 /* ConversaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9F71926F20D26009EC943 /* ConversaAPI.swift */; };
 		DC038B2C5DC18C1A0625A2FA /* Pods_ConversaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */; };
 		E01701371E11471F005808B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701361E11471F005808B1 /* AppDelegate.swift */; };
 		E01701391E11471F005808B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701381E11471F005808B1 /* ViewController.swift */; };
@@ -46,6 +47,7 @@
 		0E3730C826ED9E9E00E10997 /* ChatMyTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMyTextCell.swift; sourceTree = "<group>"; };
 		0E3730CA26EDC58900E10997 /* ChatOtherTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOtherTextCell.swift; sourceTree = "<group>"; };
 		0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatOtherTextCell.xib; sourceTree = "<group>"; };
+		0ED9F71926F20D26009EC943 /* ConversaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversaAPI.swift; sourceTree = "<group>"; };
 		1FDE646AB59957E11C5065B4 /* Pods-CrazyMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.release.xcconfig"; sourceTree = "<group>"; };
 		553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConversaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0CAC0ED50BCF4B74CB647F /* Pods-CrazyMessages.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		0E31E3B526EB06F5006A60B5 /* ConversaCore */ = {
 			isa = PBXGroup;
 			children = (
+				0ED9F71826F20C99009EC943 /* Network */,
 				0E3730C026ED62BD00E10997 /* Models */,
 				0E31E3BA26EB1289006A60B5 /* ChatUI */,
 				E06D63501E11CAFC0092A99C /* XMPPManager.swift */,
@@ -142,6 +145,14 @@
 				0E3730CC26EDC59700E10997 /* ChatOtherTextCell.xib */,
 			);
 			path = ChatCell;
+			sourceTree = "<group>";
+		};
+		0ED9F71826F20C99009EC943 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0ED9F71926F20D26009EC943 /* ConversaAPI.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		37E7B8B68FAD22E8527207B7 /* Frameworks */ = {
@@ -346,6 +357,7 @@
 				0E31E3C626EB2BF2006A60B5 /* ChatBar.swift in Sources */,
 				0E31E3B926EB0B7F006A60B5 /* Enums.swift in Sources */,
 				E06D63511E11CAFC0092A99C /* XMPPManager.swift in Sources */,
+				0ED9F71A26F20D26009EC943 /* ConversaAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

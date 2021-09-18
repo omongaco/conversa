@@ -24,7 +24,7 @@ class XMPPManager: NSObject {
         self.xmppStream = XMPPStream()
         self.xmppStream.hostName = hostName
         self.xmppStream.hostPort = hostPort
-        self.xmppStream.startTLSPolicy = XMPPStreamStartTLSPolicy.allowed
+        self.xmppStream.startTLSPolicy = .required
         
         super.init()
         
@@ -47,7 +47,7 @@ class XMPPManager: NSObject {
             throw XMPPControllerError.missingUserID
         }
         
-        guard let userJID = XMPPJID(string: userId) else {
+        guard let userJID = XMPPJID(user: userId, domain: domain, resource: nil) else {
             throw XMPPControllerError.wrongUserJID
         }
 
@@ -60,7 +60,7 @@ class XMPPManager: NSObject {
 		}
         
         do {
-            try xmppStream.connect(withTimeout: XMPPStreamTimeoutNone)
+            try xmppStream.connect(withTimeout: 20000)
         } catch {
             print("Error: \(error)")
         }
@@ -91,7 +91,7 @@ class XMPPManager: NSObject {
     
     func sendDirectMessage(recipient: String, message: String) {
         let recipientJID = XMPPJID(string: recipient)
-        let xmppMessage = XMPPMessage(type: "chat", to: recipientJID)
+        let xmppMessage = XMPPMessage(type: "tisa", to: recipientJID)
         xmppMessage.addBody(message)
         self.xmppStream.send(xmppMessage)
     }
@@ -100,12 +100,28 @@ class XMPPManager: NSObject {
         xmppRoom?.sendMessage(withBody: message)
     }
     
-    func sendImage(image: UIImage, room: XMPPRoom) {
+    func sendImageToRoom(image: UIImage, room: XMPPRoom) {
+        // To do
+    }
+    
+    func sendImageToUser(image: UIImage, user: String) {
+        // To do
+    }
+    
+    func sendVoiceToRoom(data: Data, room: XMPPRoom) {
+        // To do
+    }
+    
+    func sendVoiceToUser(data: Data, room: String) {
         // To do
     }
 }
 
 extension XMPPManager: XMPPStreamDelegate {
+    
+    func xmppStreamWillConnect(_ sender: XMPPStream) {
+        print("Stream: Will Conect")
+    }
 	
     func xmppStreamDidConnect(_ stream: XMPPStream) {
 		print("Stream: Connected")
@@ -121,16 +137,31 @@ extension XMPPManager: XMPPStreamDelegate {
             print("Stream Error: \(error)")
         }
 	}
+    
+    func xmppStreamDidSecure(_ sender: XMPPStream) {
+        print("Stream: Did Secured")
+    }
 	
     func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
 		self.xmppStream.send(XMPPPresence())
 		print("Stream: Authenticated")
-        joinRoom(with: "chat")
+        joinRoom(with: "tisa")
 	}
 	
     func xmppStream(_ sender: XMPPStream, didNotAuthenticate error: DDXMLElement) {
 		print("Stream: Fail to Authenticate")
 	}
+    
+    func xmppStream(_ sender: XMPPStream, willSecureWithSettings settings: NSMutableDictionary) {
+        print("Stream: WillSecure With Settings")
+        settings.setValue("YES", forKey: GCDAsyncSocketManuallyEvaluateTrust)
+    }
+    
+    func xmppStream(_ sender: XMPPStream, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
+        print("Stream: Did received trust")
+        print(trust)
+        completionHandler(true)
+    }
 }
 
 extension XMPPManager: XMPPRoomDelegate {

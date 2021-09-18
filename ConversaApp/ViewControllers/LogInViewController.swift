@@ -13,7 +13,6 @@ import MBProgressHUD
 class LogInViewController: UIViewController {
 
 	@IBOutlet weak var userJIDLabel: UITextField!
-	@IBOutlet weak var userPasswordLabel: UITextField!
 	@IBOutlet weak var errorLabel: UILabel!
 
 	weak var delegate:LogInViewControllerDelegate?
@@ -24,8 +23,7 @@ class LogInViewController: UIViewController {
 	}
 
 	@IBAction func logInAction(sender: AnyObject) {
-		if self.userJIDLabel.text?.count == 0
-		  || self.userPasswordLabel.text?.count == 0 {
+		if self.userJIDLabel.text?.count == 0 {
 				
 			self.errorLabel.text = "Something is missing or wrong!"
 			return
@@ -39,7 +37,7 @@ class LogInViewController: UIViewController {
         self.hud = MBProgressHUD.showAdded(to: self.view, animated: true)
 		self.hud.label.text = "Signing in..."
 		
-        self.delegate?.didTouchLogIn(sender: self, userJID: self.userJIDLabel.text!, userPassword: self.userPasswordLabel.text!)
+        self.delegate?.didTouchLogIn(sender: self, userJID: self.userJIDLabel.text!)
 	}
 	
 	func showErrorMessage(message: String) {
@@ -51,5 +49,5 @@ class LogInViewController: UIViewController {
 }
 
 protocol LogInViewControllerDelegate: AnyObject {
-	func didTouchLogIn(sender: LogInViewController, userJID: String, userPassword: String)
+	func didTouchLogIn(sender: LogInViewController, userJID: String)
 }
