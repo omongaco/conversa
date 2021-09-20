@@ -20,6 +20,7 @@ class ChatTemplate: UIView {
     
     var chatTemplates: [String] = []
     var delegate: ChatTemplateProtocol?
+    let textView = UITextView(frame: CGRect.zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,6 +59,8 @@ class ChatTemplate: UIView {
         templateTable.dataSource = self
         templateTable.delegate = self
         
+        addButton.addTarget(self, action: #selector(addButtonCLicked), for: .touchUpInside)
+        
         initiateData()
     }
     
@@ -77,7 +80,48 @@ class ChatTemplate: UIView {
         } catch {
             print("Chat Template Error: \(error)")
         }
+    }
+    
+    @objc private func addButtonCLicked() {
+        var parentView = UIApplication.shared.keyWindow?.rootViewController
+        while parentView?.presentedViewController != nil {
+            parentView = parentView?.presentedViewController
+        }
+
+        var titlePrefix = "Add Message"
         
+        let alertController = UIAlertController(title: "\(titlePrefix) \n\n\n\n\n", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+        }))
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+            if let enteredText = self.textView.text {
+                print(enteredText)
+                 
+            }
+        }))
+
+        alertController.view.addObserver(self, forKeyPath: "bounds", options: NSKeyValueObservingOptions.new, context: nil)
+        textView.backgroundColor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        textView.textContainerInset = UIEdgeInsets.init(top: 8, left: 5, bottom: 8, right: 5)
+        alertController.view.addSubview(textView)
+
+        parentView?.present(alertController, animated: true, completion: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "bounds"{
+            if let rect = (change?[NSKeyValueChangeKey.newKey] as? NSValue)?.cgRectValue {
+                let margin: CGFloat = 15
+                let xPos = rect.origin.x + margin
+                let yPos = rect.origin.y + 54
+                let width = rect.width - 2 * margin
+                let height: CGFloat = 90
+
+                textView.frame = CGRect.init(x: xPos, y: yPos, width: width, height: height)
+            }
+        }
     }
 }
 

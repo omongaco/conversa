@@ -27,6 +27,8 @@
 		0E86FDF726F5AF4D0029D746 /* TemplateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDF626F5AF4D0029D746 /* TemplateMessage.swift */; };
 		0E86FDF926F5B10C0029D746 /* ChatTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */; };
 		0E86FDFC26F5B6AF0029D746 /* ChatTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E86FDFB26F5B6AF0029D746 /* ChatTemplate.plist */; };
+		0E86FDFE26F83FEA0029D746 /* ChatTemplateMessageEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E86FDFD26F83FEA0029D746 /* ChatTemplateMessageEditor.xib */; };
+		0E86FE0026F83FFE0029D746 /* ChatTemplateMessageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E86FDFF26F83FFE0029D746 /* ChatTemplateMessageEditor.swift */; };
 		0ED9F71A26F20D26009EC943 /* ConversaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED9F71926F20D26009EC943 /* ConversaAPI.swift */; };
 		DC038B2C5DC18C1A0625A2FA /* Pods_ConversaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */; };
 		E01701371E11471F005808B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01701361E11471F005808B1 /* AppDelegate.swift */; };
@@ -59,6 +61,8 @@
 		0E86FDF626F5AF4D0029D746 /* TemplateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateMessage.swift; sourceTree = "<group>"; };
 		0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTemplate.swift; sourceTree = "<group>"; };
 		0E86FDFB26F5B6AF0029D746 /* ChatTemplate.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ChatTemplate.plist; sourceTree = "<group>"; };
+		0E86FDFD26F83FEA0029D746 /* ChatTemplateMessageEditor.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatTemplateMessageEditor.xib; sourceTree = "<group>"; };
+		0E86FDFF26F83FFE0029D746 /* ChatTemplateMessageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTemplateMessageEditor.swift; sourceTree = "<group>"; };
 		0ED9F71926F20D26009EC943 /* ConversaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversaAPI.swift; sourceTree = "<group>"; };
 		1FDE646AB59957E11C5065B4 /* Pods-CrazyMessages.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CrazyMessages.release.xcconfig"; path = "Pods/Target Support Files/Pods-CrazyMessages/Pods-CrazyMessages.release.xcconfig"; sourceTree = "<group>"; };
 		553124276A2785E0B3CAE0A5 /* Pods_ConversaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConversaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,8 @@
 				0E86FDF326F5ACFF0029D746 /* TemplateCell */,
 				0E86FDEF26F5A7FE0029D746 /* ChatTemplate.xib */,
 				0E86FDF826F5B10C0029D746 /* ChatTemplate.swift */,
+				0E86FDFD26F83FEA0029D746 /* ChatTemplateMessageEditor.xib */,
+				0E86FDFF26F83FFE0029D746 /* ChatTemplateMessageEditor.swift */,
 			);
 			path = ChatTemplate;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				0E3730C726ED9E9300E10997 /* ChatMyTextCell.xib in Resources */,
 				E017013E1E11471F005808B1 /* Assets.xcassets in Resources */,
 				E017013C1E11471F005808B1 /* Main.storyboard in Resources */,
+				0E86FDFE26F83FEA0029D746 /* ChatTemplateMessageEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +413,7 @@
 				0E31E3B926EB0B7F006A60B5 /* Enums.swift in Sources */,
 				E06D63511E11CAFC0092A99C /* XMPPManager.swift in Sources */,
 				0ED9F71A26F20D26009EC943 /* ConversaAPI.swift in Sources */,
+				0E86FE0026F83FFE0029D746 /* ChatTemplateMessageEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

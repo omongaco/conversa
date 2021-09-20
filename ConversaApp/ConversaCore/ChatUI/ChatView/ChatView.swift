@@ -118,16 +118,29 @@ class ChatView: UIView {
         chatBar.chatBarBuble.addTarget(self, action: #selector(bubbleChatClicked), for: .touchUpInside)
         chatBar.chatBarImage.addTarget(self, action: #selector(imageChatClicked), for: .touchUpInside)
         chatBar.chatBarMic.addTarget(self, action: #selector(voiceChatClicked), for: .touchUpInside)
+        chatBar.chatBarSend.addTarget(self, action: #selector(messageButtonClicked), for: .touchUpInside)
         chatBar.chatBarField.delegate = self
     }
 }
 
 extension ChatView {
+    @objc func messageButtonClicked() {
+        if let text = chatBar.chatBarField.text {
+            sendMessage(message: text)
+        }
+        
+        chatBar.chatBarField.text = ""
+        bubbleChatClicked()
+    }
+    
     @objc func bubbleChatClicked() {
         if isChatTemplate {
             if chatTemplate != nil {
-                stackView.removeArrangedSubview(chatTemplate!)
+                chatTemplate?.removeFromSuperview()
                 chatTemplate = nil
+                chatBar.chatBarBuble.setImage(UIImage(named: "chatBarBubbleIcon"), for: .normal)
+                chatBar.isTemplate = false
+                chatBar.toggleTemplate()
                 isChatTemplate = false
             }
         } else {
@@ -142,6 +155,9 @@ extension ChatView {
                     }
                 }
                 chatTemplate!.heightAnchor.constraint(equalToConstant: 313 - safeBottom).isActive = true
+                chatBar.chatBarBuble.setImage(UIImage(named: "chatBarKeyboard"), for: .normal)
+                chatBar.isTemplate = true
+                chatBar.toggleTemplate()
                 isChatTemplate = true
             }
         }
