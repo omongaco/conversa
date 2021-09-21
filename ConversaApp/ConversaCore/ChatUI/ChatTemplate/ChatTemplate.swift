@@ -81,35 +81,7 @@ class ChatTemplate: UIView {
             print("Chat Template Error: \(error)")
         }
     }
-    
-    @objc private func addButtonCLicked() {
-        var parentView = UIApplication.shared.keyWindow?.rootViewController
-        while parentView?.presentedViewController != nil {
-            parentView = parentView?.presentedViewController
-        }
 
-        var titlePrefix = "Add Message"
-        
-        let alertController = UIAlertController(title: "\(titlePrefix) \n\n\n\n\n", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
-            alertController.view.removeObserver(self, forKeyPath: "bounds")
-        }))
-        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
-            alertController.view.removeObserver(self, forKeyPath: "bounds")
-            if let enteredText = self.textView.text {
-                print(enteredText)
-                 
-            }
-        }))
-
-        alertController.view.addObserver(self, forKeyPath: "bounds", options: NSKeyValueObservingOptions.new, context: nil)
-        textView.backgroundColor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
-        textView.textContainerInset = UIEdgeInsets.init(top: 8, left: 5, bottom: 8, right: 5)
-        alertController.view.addSubview(textView)
-
-        parentView?.present(alertController, animated: true, completion: nil)
-    }
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "bounds"{
             if let rect = (change?[NSKeyValueChangeKey.newKey] as? NSValue)?.cgRectValue {
@@ -136,8 +108,12 @@ extension ChatTemplate: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         // Customize selection
+        cell.cellButton.tag = indexPath.row
+        cell.cellButton.addTarget(self, action: #selector(messageEditClicked(sender:)), for: .touchUpInside)
+        
         cell.customView.tag = indexPath.row
         cell.customView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(templateSelected(_:))))
+        
         //  assign message
         cell.message = chatTemplates[indexPath.row]
         
@@ -162,5 +138,159 @@ extension ChatTemplate: UITableViewDelegate, UITableViewDataSource {
         let message = chatTemplates[view.tag]
         delegate?.messageDidSelected(message: message)
         print("Selected Message: \(message)")
+    }
+    
+    @objc func messageEditClicked(sender: UIButton) {
+        let alertController = UIAlertController(title: "Template Message", message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Edit", style: .default, handler: { action in
+            self.editMessageTemplate(index: sender.tag)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+            self.deleteMessage(index: sender.tag)
+        }))
+        
+        var parentView = UIApplication.shared.keyWindow?.rootViewController
+        while parentView?.presentedViewController != nil {
+            parentView = parentView?.presentedViewController
+        }
+        parentView?.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc private func addButtonCLicked() {
+        var parentView = UIApplication.shared.keyWindow?.rootViewController
+        while parentView?.presentedViewController != nil {
+            parentView = parentView?.presentedViewController
+        }
+
+        let titlePrefix = "Add Message"
+        
+        let alertController = UIAlertController(title: "\(titlePrefix) \n\n\n\n\n", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+        }))
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+            if let enteredText = self.textView.text {
+                print(enteredText)
+                self.messageTemplateSaved(message: enteredText)
+                self.textView.text = ""
+            }
+        }))
+
+        alertController.view.addObserver(self, forKeyPath: "bounds", options: NSKeyValueObservingOptions.new, context: nil)
+        textView.backgroundColor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        textView.textContainerInset = UIEdgeInsets.init(top: 8, left: 5, bottom: 8, right: 5)
+        alertController.view.addSubview(textView)
+
+        parentView?.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func deleteMessage(index: Int) {
+        let alertController = UIAlertController(title: "Are you sure to delete this message template?", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+            guard let bundlePath = Bundle.main.path(forResource: "ChatTemplate", ofType: "plist") else {
+                return
+            }
+            
+            let url = URL(fileURLWithPath: bundlePath)
+            
+            do {
+                let data = try Data(contentsOf: url)
+                if var messages = try PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String] {
+                    messages.remove(at: index)
+                    let updatedData = try PropertyListSerialization.data(fromPropertyList: messages, format: .binary, options: .zero)
+                    try updatedData.write(to: url)
+                    self.initiateData()
+                }
+            } catch {
+                print("Chat Template Error: \(error)")
+            }
+        }))
+        
+        var parentView = UIApplication.shared.keyWindow?.rootViewController
+        while parentView?.presentedViewController != nil {
+            parentView = parentView?.presentedViewController
+        }
+        parentView?.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func editMessageTemplate(index: Int) {
+        guard let bundlePath = Bundle.main.path(forResource: "ChatTemplate", ofType: "plist") else {
+            return
+        }
+        
+        let url = URL(fileURLWithPath: bundlePath)
+        var messages = [String]()
+        
+        do {
+            let data = try Data(contentsOf: url)
+            if let plistData = try PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String] {
+                messages = plistData
+                let editedMessage = messages[index]
+                self.textView.text = editedMessage
+            }
+        } catch {
+            print("Chat Template Error: \(error)")
+        }
+        
+        var parentView = UIApplication.shared.keyWindow?.rootViewController
+        while parentView?.presentedViewController != nil {
+            parentView = parentView?.presentedViewController
+        }
+
+        let titlePrefix = "Edit Message"
+        
+        let alertController = UIAlertController(title: "\(titlePrefix) \n\n\n\n\n", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+        }))
+        alertController.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+            alertController.view.removeObserver(self, forKeyPath: "bounds")
+            if let enteredText = self.textView.text {
+                print(enteredText)
+                do {
+                    let data = try Data(contentsOf: url)
+                    if var messages = try PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String] {
+                        messages.remove(at: index)
+                        messages.insert(enteredText, at: index)
+                        let updatedData = try PropertyListSerialization.data(fromPropertyList: messages, format: .binary, options: .zero)
+                        try updatedData.write(to: url)
+                        self.initiateData()
+                    }
+                } catch {
+                    print("Chat Template Error: \(error)")
+                }
+            }
+        }))
+
+        alertController.view.addObserver(self, forKeyPath: "bounds", options: NSKeyValueObservingOptions.new, context: nil)
+        textView.backgroundColor = UIColor(red: 245.0/255.0, green: 244.0/255.0, blue: 244.0/255.0, alpha: 1.0)
+        textView.textContainerInset = UIEdgeInsets.init(top: 8, left: 5, bottom: 8, right: 5)
+        alertController.view.addSubview(textView)
+
+        parentView?.present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func messageTemplateSaved(message: String) {
+        guard let bundlePath = Bundle.main.path(forResource: "ChatTemplate", ofType: "plist") else {
+            return
+        }
+        
+        let url = URL(fileURLWithPath: bundlePath)
+        
+        do {
+            let data = try Data(contentsOf: url)
+            if var messages = try PropertyListSerialization.propertyList(from: data, options: .mutableContainers, format: nil) as? [String] {
+                messages.append(message)
+                let updatedData = try PropertyListSerialization.data(fromPropertyList: messages, format: .binary, options: .zero)
+                try updatedData.write(to: url)
+                self.initiateData()
+            }
+        } catch {
+            print("Chat Template Error: \(error)")
+        }
     }
 }
