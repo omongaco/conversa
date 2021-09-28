@@ -205,6 +205,45 @@ extension ChatView: UITableViewDelegate, UITableViewDataSource {
         return messages.count
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headStack = UIStackView()
+        headStack.axis = .vertical
+        headStack.alignment = .center
+        
+        let labelContainer = UIView()
+        headStack.addArrangedSubview(labelContainer)
+        if #available(iOS 13.0, *) {
+            labelContainer.backgroundColor = .systemGray6
+        } else {
+            labelContainer.backgroundColor = .lightGray
+        }
+        labelContainer.layer.cornerRadius = 5
+        labelContainer.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        labelContainer.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        labelContainer.topAnchor.constraint(equalTo: headStack.topAnchor, constant: 10).isActive = true
+        
+        let dateLabel = UILabel()
+        dateLabel.textColor = .darkGray
+        dateLabel.textAlignment = .center
+        dateLabel.font = UIFont(name: "Thonburi", size: 12)
+        labelContainer.addSubview(dateLabel)
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.topAnchor.constraint(equalTo: labelContainer.topAnchor).isActive = true
+        dateLabel.bottomAnchor.constraint(equalTo: labelContainer.bottomAnchor).isActive = true
+        dateLabel.leadingAnchor.constraint(equalTo: labelContainer.leadingAnchor).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: labelContainer.trailingAnchor).isActive = true
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM dd yyyy"
+        dateLabel.text = dateFormatter.string(from: Date())
+        
+        return headStack
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard messages.count > 0 else {
             return UITableViewCell()

@@ -9,7 +9,6 @@
 import UIKit
 
 class ChatOtherTextCell: UITableViewCell {
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var chatStatus: UIImageView!
@@ -18,10 +17,9 @@ class ChatOtherTextCell: UITableViewCell {
     var item: ConversaMessage! {
         didSet {
             textView.text = item.message?.body
-            userNameLabel.text = item.message?.from?.resource
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yy hh:mm a"
+            dateFormatter.dateFormat = "hh:mm"
             if let date = item.message?.delayedDeliveryDate {
                 timeStamp.text = dateFormatter.string(from: date)
             }

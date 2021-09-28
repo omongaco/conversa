@@ -297,6 +297,7 @@
 				TargetAttributes = {
 					E01701321E11471F005808B1 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = ZRR7C9UCC7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -539,6 +540,7 @@
 			baseConfigurationReference = B1C9516E977468BFBEDDAB14 /* Pods-ConversaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZRR7C9UCC7;
 				INFOPLIST_FILE = ConversaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = id.prosa.ConversaApp;
@@ -552,6 +554,7 @@
 			baseConfigurationReference = 9DEC86DE43353F3AB075CC61 /* Pods-ConversaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ZRR7C9UCC7;
 				INFOPLIST_FILE = ConversaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = id.prosa.ConversaApp;

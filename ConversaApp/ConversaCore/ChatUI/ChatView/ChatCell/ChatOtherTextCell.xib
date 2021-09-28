@@ -1,61 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatOtherTextCell" rowHeight="102" id="7gZ-be-guf" customClass="ChatOtherTextCell" customModule="ConversaApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatOtherTextCell" rowHeight="66" id="7gZ-be-guf" customClass="ChatOtherTextCell" customModule="ConversaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7gZ-be-guf" id="qi0-Bj-t98">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5b-IY-jo1">
-                        <rect key="frame" x="20" y="10" width="47" height="16"/>
-                        <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.3294117647" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" editable="NO" text="Message" translatesAutoresizingMaskIntoConstraints="NO" id="uTz-xe-WoN">
-                        <rect key="frame" x="20" y="31" width="68" height="41.5"/>
+                        <rect key="frame" x="20" y="5" width="68" height="56"/>
                         <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfU-hr-b2R">
-                        <rect key="frame" x="20" y="77.5" width="25" height="14.5"/>
+                        <rect key="frame" x="96" y="46.5" width="25" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="i5b-IY-jo1" firstAttribute="top" secondItem="qi0-Bj-t98" secondAttribute="top" constant="10" id="Gen-B5-yPQ"/>
-                    <constraint firstItem="qfU-hr-b2R" firstAttribute="top" secondItem="uTz-xe-WoN" secondAttribute="bottom" constant="5" id="ZdQ-lj-nhD"/>
+                    <constraint firstItem="qfU-hr-b2R" firstAttribute="leading" secondItem="uTz-xe-WoN" secondAttribute="trailing" constant="8" symbolic="YES" id="MVT-Nt-Wqd"/>
+                    <constraint firstItem="qfU-hr-b2R" firstAttribute="bottom" secondItem="uTz-xe-WoN" secondAttribute="bottom" id="aEQ-5c-WLQ"/>
+                    <constraint firstItem="uTz-xe-WoN" firstAttribute="top" secondItem="qi0-Bj-t98" secondAttribute="top" constant="5" id="bQC-yD-O6N"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uTz-xe-WoN" secondAttribute="trailing" constant="100" id="dQy-aN-YQF"/>
-                    <constraint firstAttribute="bottom" secondItem="qfU-hr-b2R" secondAttribute="bottom" constant="10" id="dvn-y5-xzu"/>
-                    <constraint firstItem="qfU-hr-b2R" firstAttribute="leading" secondItem="qi0-Bj-t98" secondAttribute="leading" constant="20" id="h6d-OC-NEJ"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i5b-IY-jo1" secondAttribute="trailing" constant="20" symbolic="YES" id="htp-zv-d1Z"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qfU-hr-b2R" secondAttribute="trailing" constant="293" id="hEg-7y-KOM"/>
                     <constraint firstItem="uTz-xe-WoN" firstAttribute="leading" secondItem="qi0-Bj-t98" secondAttribute="leading" constant="20" id="mfO-vO-mo0"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qfU-hr-b2R" secondAttribute="trailing" constant="20" symbolic="YES" id="nLl-S6-ETR"/>
-                    <constraint firstItem="uTz-xe-WoN" firstAttribute="top" secondItem="i5b-IY-jo1" secondAttribute="bottom" constant="5" id="nev-Zk-d5y"/>
-                    <constraint firstItem="i5b-IY-jo1" firstAttribute="leading" secondItem="qi0-Bj-t98" secondAttribute="leading" constant="20" id="x5d-fL-PmA"/>
+                    <constraint firstAttribute="bottom" secondItem="uTz-xe-WoN" secondAttribute="bottom" constant="5" id="teO-fG-9XV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="qfU-hr-b2R" id="KJa-eg-dMt"/>
                 <outlet property="textView" destination="uTz-xe-WoN" id="kTb-1L-YL0"/>
                 <outlet property="timeStamp" destination="qfU-hr-b2R" id="YSY-ag-Ooo"/>
-                <outlet property="userNameLabel" destination="i5b-IY-jo1" id="wWa-tF-cBH"/>
             </connections>
-            <point key="canvasLocation" x="-30.434782608695656" y="61.607142857142854"/>
+            <point key="canvasLocation" x="-30.434782608695656" y="49.553571428571423"/>
         </tableViewCell>
     </objects>
 </document>

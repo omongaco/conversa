@@ -9,7 +9,6 @@
 import UIKit
 
 class ChatMyTextCell: UITableViewCell {
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var chatStatus: UIImageView!
@@ -18,18 +17,26 @@ class ChatMyTextCell: UITableViewCell {
     var item: ConversaMessage! {
         didSet {
             textView.text = item.message?.body
-            userNameLabel.text = item.message?.from?.resource
             
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-yy hh:mm a"
+            dateFormatter.dateFormat = "hh:mm"
             if let date = item.message?.delayedDeliveryDate {
                 timeStamp.text = dateFormatter.string(from: date)
             }
+            
+            if item.message?.hasReceiptResponse == true {
+                self.chatStatus.image = UIImage(named: "chatCellSent")
+            }
+            
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.chatStatus.image = UIImage(named: "chatCellSend")
+        self.chatStatus.widthAnchor.constraint(equalToConstant: 15).isActive = true
+        self.chatStatus.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
         self.textView.layer.borderColor = UIColor.white.cgColor
         self.textView.layer.borderWidth = 1
