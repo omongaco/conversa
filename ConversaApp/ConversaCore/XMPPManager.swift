@@ -18,12 +18,17 @@ class XMPPManager: NSObject {
 	
     var xmppStream: XMPPStream
     var xmppRoom: XMPPRoom?
+    var roomJid: XMPPJID!
     var messageDelegate: MessageDelegate?
+    
+    lazy var chatViewController: ConversaChatController = {
+        return ConversaChatController(nibName: "ConversaChatController", bundle: nil)
+    }()
     
     override init() {
         self.xmppStream = XMPPStream()
-        self.xmppStream.hostName = hostName
-        self.xmppStream.hostPort = hostPort
+        self.xmppStream.hostName = Configs.hostName
+        self.xmppStream.hostPort = Configs.hostPort
         self.xmppStream.startTLSPolicy = .required
         
         super.init()
@@ -39,7 +44,6 @@ class XMPPManager: NSObject {
         } catch {
             print("Error: \(error)")
         }
-        
     }
     
     func setupXmppStream() throws {
@@ -47,7 +51,7 @@ class XMPPManager: NSObject {
             throw XMPPControllerError.missingUserID
         }
         
-        guard let userJID = XMPPJID(user: userId, domain: domain, resource: nil) else {
+        guard let userJID = XMPPJID(user: userId, domain: Configs.domain, resource: nil) else {
             throw XMPPControllerError.wrongUserJID
         }
 
@@ -60,6 +64,11 @@ class XMPPManager: NSObject {
 		}
         
         do {
+            let deliveryReceipt = XMPPMessageDeliveryReceipts(dispatchQueue: .main)
+            deliveryReceipt.autoSendMessageDeliveryReceipts = true
+            deliveryReceipt.autoSendMessageDeliveryRequests = true
+            deliveryReceipt.activate(xmppStream)
+            
             try xmppStream.connect(withTimeout: 20000)
         } catch {
             print("Error: \(error)")
@@ -71,16 +80,18 @@ class XMPPManager: NSObject {
     }
     
     func joinRoom(with jidString: String) {
-        guard let roomJID = XMPPJID(string: "\(jidString)@\(mucSubdomain).\(domain)") else {
+        guard let jid = XMPPJID(string: "\(jidString)@\(Configs.mucSubdomain).\(Configs.domain)") else {
             return
         }
+        
+        roomJid = jid
         
         //  Sebaiknya di simpan dalam database/core data maybe??
         guard let roomStorage = XMPPRoomMemoryStorage() else {
             return
         }
         
-        xmppRoom = XMPPRoom(roomStorage: roomStorage, jid: roomJID, dispatchQueue: DispatchQueue.main)
+        xmppRoom = XMPPRoom(roomStorage: roomStorage, jid: roomJid, dispatchQueue: DispatchQueue.main)
         xmppRoom?.activate(xmppStream)
         xmppRoom?.addDelegate(self, delegateQueue: DispatchQueue.main)
 
@@ -91,13 +102,18 @@ class XMPPManager: NSObject {
     
     func sendDirectMessage(recipient: String, message: String) {
         let recipientJID = XMPPJID(string: recipient)
-        let xmppMessage = XMPPMessage(type: "tisa", to: recipientJID)
+        let xmppMessage = XMPPMessage(type: "chat", to: recipientJID)
         xmppMessage.addBody(message)
+        
         self.xmppStream.send(xmppMessage)
     }
     
     func sendRoomMessage(message: String) {
-        xmppRoom?.sendMessage(withBody: message)
+        let msgUid = xmppStream.generateUUID
+        let xmppMessage = XMPPMessage(type: "groupchat", to: roomJid, elementID: msgUid)
+        xmppMessage.addBody(message)
+        
+        xmppRoom?.send(xmppMessage)
     }
     
     func sendImageToRoom(image: UIImage, room: XMPPRoom) {

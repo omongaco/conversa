@@ -14,7 +14,7 @@ class ConversaAPI {
     private init(){}
     
     func getApplication(appId: String, completion: @escaping(_ data: Data?, _ error: Error?) -> Void) {
-        guard let url = URL(string: urlGetApplication) else {
+        guard let url = URL(string: Configs.urlGetApplication) else {
             completion(nil, NSError(domain: "", code: 401, userInfo: nil))
             return
         }
@@ -30,12 +30,12 @@ class ConversaAPI {
     }
     
     func getNonce(userId: String, completion: @escaping(_ nonce: String?, _ error: Error?) -> Void) {
-        guard let url = URL(string: urlGetNonce) else {
+        guard let url = URL(string: Configs.urlGetNonce) else {
             completion(nil, NSError(domain: "", code: 401, userInfo: nil))
             return
         }
         
-        let params = ["userid": userId, "application_id": appId]
+        let params = ["userid": userId, "application_id": Configs.appId]
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -65,12 +65,12 @@ class ConversaAPI {
     }
     
     func getToken(userId: String, completion: @escaping(_ token: String?, _ error: Error?) -> Void) {
-        guard let url = URL(string: urlGetToken) else {
+        guard let url = URL(string: Configs.urlGetToken) else {
             completion(nil, NSError(domain: "", code: 401, userInfo: nil))
             return
         }
         
-        let params = ["userid": userId, "application_id": appId]
+        let params = ["userid": userId, "application_id": Configs.appId]
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         

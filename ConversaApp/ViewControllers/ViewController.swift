@@ -10,15 +10,16 @@ import UIKit
 import XMPPFramework
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var chatView: ChatView!
+    
+    @IBOutlet weak var joinButton: UIButton!
     
     weak var logInViewController: LogInViewController?
     var logInPresented = false
-    var xmppManager: XMPPManager!
+    let xmppManager = XMPPManager.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        joinButton.isEnabled = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +37,12 @@ class ViewController: UIViewController {
             viewController.delegate = self
         }
     }
+    
+    @IBAction func joinRoom(_ sender: Any) {
+        let chatController = ConversaChatController(nibName: "ConversaChatController", bundle: nil)
+        chatController.modalPresentationStyle = .overCurrentContext
+        self.present(chatController, animated: true, completion: nil)
+    }
 }
 
 extension ViewController: LogInViewControllerDelegate {
@@ -51,11 +58,9 @@ extension ViewController: LogInViewControllerDelegate {
                 return
             }
             
-            self.xmppManager = XMPPManager.sharedInstance
             self.xmppManager.setupUser(userId: userJID,password: token)
             self.xmppManager.xmppStream.addDelegate(self, delegateQueue: DispatchQueue.main)
             self.xmppManager.connect()
-            self.xmppManager.messageDelegate = self
         }
     }
 }
@@ -63,16 +68,10 @@ extension ViewController: LogInViewControllerDelegate {
 extension ViewController: XMPPStreamDelegate {
     func xmppStreamDidAuthenticate(_ sender: XMPPStream) {
         self.logInViewController?.dismiss(animated: true, completion: nil)
+        self.joinButton.isEnabled = true
     }
     
     func xmppStream(_ sender: XMPPStream, didNotAuthenticate error: DDXMLElement) {
         self.logInViewController?.showErrorMessage(message: "Wrong password or username")
-    }
-}
-
-extension ViewController: MessageDelegate {
-    func messageReceived(message: ConversaMessage) {
-        chatView.messages.append(message)
-        chatView.loadMessages()
     }
 }

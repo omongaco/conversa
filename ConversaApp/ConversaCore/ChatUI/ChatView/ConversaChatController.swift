@@ -1,16 +1,16 @@
 //
-//  ChatView.swift
+//  ChatViewController.swift
 //  ConversaApp
 //
-//  Created by Ansyar Hafid on 10/09/21.
+//  Created by Ansyar Hafid on 16/11/21.
 //  Copyright © 2021 Erlang Solutions. All rights reserved.
 //
 
+import Foundation
 import UIKit
-import PhotosUI
 
-class ChatView: UIView {
-    @IBOutlet weak var view: UIView!
+class ConversaChatController: UIViewController {
+    
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var chatHeader: ChatHeader!
     @IBOutlet weak var chatTableContainer: UIView!
@@ -18,54 +18,39 @@ class ChatView: UIView {
     @IBOutlet weak var chatBar: ChatBar!
     
     let xmppManager = XMPPManager.sharedInstance
-    
     var spacer: UIView?
     var chatTemplate: ChatTemplate?
     var messages: [ConversaMessage] = []
     var isChatTemplate = false
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initSubViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        initSubViews()
-    }
-    
-    private func initSubViews() {
-        let nib = UINib(nibName: String(describing: type(of: self)), bundle: Bundle(for: type(of: self)))
-        nib.instantiate(withOwner: self, options: nil)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(view)
-        addConstraints()
-        setupSpacer()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view = ChatView()
+        setupChatController()
+        setupObserver()
         setupChatHeader()
         setupChatTable()
         setupChatBar()
     }
     
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: view.topAnchor),
-            leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+extension ConversaChatController {
+    private func setupChatController() {
+        xmppManager.messageDelegate = self
     }
     
-    private func setupSpacer() {
+    private func setupObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidShow(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignReponder)))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resignReponder)))
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
     
     @objc func keyBoardWillShow(notification: Notification) {
         if let keyboardRect = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect {
@@ -125,7 +110,7 @@ class ChatView: UIView {
     }
 }
 
-extension ChatView {
+extension ConversaChatController {
     @objc func messageButtonClicked() {
         if let text = chatBar.chatBarField.text {
             sendMessage(message: text)
@@ -191,7 +176,7 @@ extension ChatView {
     }
     
     func loadMessages() {
-        chatTable.reloadData()
+         chatTable.reloadData()
         scrollTableToBottom()
     }
     
@@ -202,7 +187,14 @@ extension ChatView {
     }
 }
 
-extension ChatView: UITableViewDelegate, UITableViewDataSource {
+extension ConversaChatController: MessageDelegate {
+    func messageReceived(message: ConversaMessage) {
+        messages.append(message)
+        loadMessages()
+    }
+}
+
+extension ConversaChatController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
@@ -275,7 +267,7 @@ extension ChatView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ChatView: UITextFieldDelegate {
+extension ConversaChatController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
             sendMessage(message: text)
@@ -292,7 +284,7 @@ extension ChatView: UITextFieldDelegate {
     }
 }
 
-extension ChatView: ChatTemplateProtocol {
+extension ConversaChatController: ChatTemplateProtocol {
     func messageDidSelected(message: String) {
         chatBar.chatBarField.text = message
     }
