@@ -39,8 +39,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func joinRoom(_ sender: Any) {
-        let chatController = ConversaChatController(nibName: "ConversaChatController", bundle: nil)
-        chatController.modalPresentationStyle = .overCurrentContext
+        let chatController = xmppManager.chatViewController
+        chatController.modalPresentationStyle = .currentContext
         self.present(chatController, animated: true, completion: nil)
     }
 }
